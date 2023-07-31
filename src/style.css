@@ -118,7 +118,7 @@ form {
    align-items: center;
    align-items: center;
    padding-right: 10px;
-   transition: 0.3s ease background-color;
+   transition: all 0.3s easy-in-out;
 }
 
 .field:first-of-type {
@@ -126,7 +126,8 @@ form {
 }
 
 .field:not(:first-of-type):hover {
-   background-color: rgb(13, 30, 42, 0.5);
+   box-shadow: 0 0 5px rgb(0, 187, 255), 0 0 10px rgb(0, 187, 255), 0 0 15px rgb(0, 187, 255);
+   transition: all 0.2s ease-in-out;
 }
 
 .field label {
