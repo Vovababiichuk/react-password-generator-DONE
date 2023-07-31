@@ -84,7 +84,7 @@ function App() {
                </div>
                <div>
                   <div className="field">
-                     <label htmlFor="password-length" style={{ cursor: 'default' }}>Length:</label>
+                     <label htmlFor="password-length" className='length-none' style={{ cursor: 'default' }}>Length:</label>
                      <input
                         type="range"
                         id="password-length"
