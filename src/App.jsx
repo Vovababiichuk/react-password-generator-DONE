@@ -68,89 +68,94 @@ function App() {
 
    return (
       <section>
-         <div className="container">
-            <form id="pg-form" onSubmit={handleOnSubmit}>
-               <div className="result">
-                  <input
-                     type="text"
-                     id="result"
-                     placeholder="min 6 symbols"
-                     readOnly
-                     value={result}
-                  />
-                  <div className="clipboard" onClick={handleClipboard}>
-                     <FaCopy />
-                  </div>
-               </div>
-               <div>
-                  <div className="field">
-                     <label htmlFor="password-length" className='length-none' style={{ cursor: 'default' }}>Length:</label>
+         <div className='wrapper'>
+            <h1 className="blur-animation">
+               Random Password Generator
+            </h1>
+            <div className="container">
+               <form id="pg-form" onSubmit={handleOnSubmit}>
+                  <div className="result">
                      <input
-                        type="range"
-                        id="password-length"
-                        name="length"
-                        min={6}
-                        max={20}
-                        value={values.length}
-                        onChange={setValues}
+                        type="text"
+                        id="result"
+                        placeholder="min 6 symbols"
+                        readOnly
+                        value={result}
                      />
-                     <select
-                        id="password-length-display"
-                        name="length"
-                        value={values.length}
-                        onChange={setValues}>
-                        {[...Array(15)].map((_, i) => (
-                           <option key={i} value={i + 6}>
-                              {i + 6}
-                           </option>
-                        ))}
-                     </select>
+                     <div className="clipboard" onClick={handleClipboard}>
+                        <FaCopy />
+                     </div>
                   </div>
-                  <div className="field">
-                     <label htmlFor="capital">Uppercase (ABC)</label>
-                     <input
-                        type="checkbox"
-                        id="capital"
-                        name="capital"
-                        checked={values.capital}
-                        onChange={setValues}
-                     />
+                  <div>
+                     <div className="field">
+                        <label htmlFor="password-length" className='length-none' style={{ cursor: 'default' }}>Length:</label>
+                        <input
+                           type="range"
+                           id="password-length"
+                           name="length"
+                           min={6}
+                           max={20}
+                           value={values.length}
+                           onChange={setValues}
+                        />
+                        <select
+                           id="password-length-display"
+                           name="length"
+                           value={values.length}
+                           onChange={setValues}>
+                           {[...Array(15)].map((_, i) => (
+                              <option key={i} value={i + 6}>
+                                 {i + 6}
+                              </option>
+                           ))}
+                        </select>
+                     </div>
+                     <div className="field">
+                        <label htmlFor="capital">Uppercase (ABC)</label>
+                        <input
+                           type="checkbox"
+                           id="capital"
+                           name="capital"
+                           checked={values.capital}
+                           onChange={setValues}
+                        />
+                     </div>
+                     <div className="field">
+                        <label htmlFor="small">Lowercase (abc)</label>
+                        <input
+                           type="checkbox"
+                           id="small"
+                           name="small"
+                           checked={values.small}
+                           onChange={setValues}
+                        />
+                     </div>
+                     <div className="field">
+                        <label htmlFor="number">Numbers (123)</label>
+                        <input
+                           type="checkbox"
+                           id="number"
+                           name="number"
+                           checked={values.number}
+                           onChange={setValues}
+                        />
+                     </div>
+                     <div className="field">
+                        <label htmlFor="symbol">Symbols (#$&)</label>
+                        <input
+                           type="checkbox"
+                           id="symbol"
+                           name="symbol"
+                           checked={values.symbol}
+                           onChange={setValues}
+                        />
+                     </div>
                   </div>
-                  <div className="field">
-                     <label htmlFor="small">Lowercase (abc)</label>
-                     <input
-                        type="checkbox"
-                        id="small"
-                        name="small"
-                        checked={values.small}
-                        onChange={setValues}
-                     />
-                  </div>
-                  <div className="field">
-                     <label htmlFor="number">Numbers (123)</label>
-                     <input
-                        type="checkbox"
-                        id="number"
-                        name="number"
-                        checked={values.number}
-                        onChange={setValues}
-                     />
-                  </div>
-                  <div className="field">
-                     <label htmlFor="symbol">Symbols (#$&)</label>
-                     <input
-                        type="checkbox"
-                        id="symbol"
-                        name="symbol"
-                        checked={values.symbol}
-                        onChange={setValues}
-                     />
-                  </div>
-               </div>
-               <button className="hvr-shutter-in-vertical" type="submit">
-                  Generate Password
-               </button>
-            </form>
+                  <button className="hvr-shutter-in-vertical" type="submit">
+                     Generate Password
+                  </button>
+               </form>
+            </div>
          </div>
       </section>
    );

@@ -29,12 +29,19 @@ section {
    padding: 100px 0;
 }
 
+.wrapper {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 30px;
+}
+
 .container {
    padding: 30px;
    border-radius: 24px;
    box-shadow: 0px 0px 20px #00000011;
    width: 90%;
-   max-width: 400px;
+   max-width: 480px;
    background-color: transparent;
    border: 2px solid rgb(0, 187, 255);
    backdrop-filter: blur(15px);
@@ -158,7 +165,11 @@ button:hover {
    box-shadow: 0 0 5px rgb(0, 187, 255), 0 0 10px rgb(0, 187, 255), 0 0 15px rgb(0, 187, 255);
 }
 
-@media only screen and (max-width: 678px) {
+@media only screen and (max-width: 450px) {
+   .container {
+      margin: 0;
+   }
+
    .field {
       font-size: 16px;
    }
@@ -170,26 +181,31 @@ button:hover {
    input#password-length {
       margin-left: 0px;
    }
+
+   .wrapper h1 {
+      text-align: center;
+      font-size: 25px;
+   }
 }
 
+.blur-animation {
+   animation: blurIn 3s ease-in-out;
+}
 
-@keyframes neon {
+@keyframes blurIn {
    0% {
-      /* text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; */
-      text-shadow: 0 0 10px rgb(0, 187, 255), 0 0 20px rgb(0, 187, 255), 0 0 30px rgb(0, 187, 255);
-   }
-
-   50% {
-      text-shadow: 0 0 5px rgb(0, 187, 255), 0 0 10px rgb(0, 187, 255), 0 0 15px rgb(0, 187, 255);
+      filter: blur(10px);
+      opacity: 0;
    }
 
    100% {
-      text-shadow: 0 0 10px rgb(0, 187, 255), 0 0 20px rgb(0, 187, 255), 0 0 30px rgb(0, 187, 255);
+      filter: blur(0);
+      opacity: 1;
    }
 }
 
-.preloader span {
-   animation: neon 1.5s infinite alternate;
+.wrapper h1 {
+   text-shadow: 0 0 5px rgb(0, 187, 255), 0 0 10px rgb(0, 187, 255), 0 0 15px rgb(255, 0, 0);
 }
 
 .hvr-shutter-in-vertical {
