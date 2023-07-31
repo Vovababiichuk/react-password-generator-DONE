@@ -3,24 +3,8 @@ import { toast } from 'react-hot-toast';
 import { FaCopy } from 'react-icons/fa';
 import { useForm } from './useForm';
 import { getRandomChar, getSpecialChar } from './utilits';
-import Preloader from './Preloader';
 
 function App() {
-   const [showPreloader, setShowPreloader] = useState(true); // Стан для відображення прелоадеру
-   const [loadingComplete, setLoadingComplete] = useState(false); // Стан для позначення завершення емуляції завантаження
-
-   // Емуляція завантаження даних чи чогось іншого
-   useEffect(() => {
-      const loadingTimeout = setTimeout(() => {
-         setShowPreloader(false); // Приховати прелоадер після 2 секунд
-         setLoadingComplete(true); // Позначити, що завантаження завершено
-      }, 2000);
-
-      return () => {
-         clearTimeout(loadingTimeout); // Забезпечити очищення таймеру при виході з компонента
-      };
-   }, []);
-
    const [values, setValues] = useForm({
       length: 6,
       capital: true,
@@ -73,6 +57,10 @@ function App() {
       if (result) {
          await navigator.clipboard.writeText(result);
          toast.success('Copied to your clipboard');
+         document.querySelector('.clipboard').classList.add('color-change');
+         setTimeout(() => {
+            document.querySelector('.clipboard').classList.remove('color-change');
+         }, 2000);
       } else {
          toast.error('No password to copy');
       }
@@ -80,8 +68,6 @@ function App() {
 
    return (
       <section>
-         {/* Відображення прелоадеру, якщо showPreloader === true і loadingComplete === false */}
-         {showPreloader && !loadingComplete ? <Preloader /> : null}
          <div className="container">
             <form id="pg-form" onSubmit={handleOnSubmit}>
                <div className="result">
@@ -98,19 +84,30 @@ function App() {
                </div>
                <div>
                   <div className="field">
-                     <label htmlFor="length">Length</label>
+                     <label htmlFor="password-length" style={{ cursor: 'default' }}>Length:</label>
                      <input
-                        type="number"
-                        id="length"
+                        type="range"
+                        id="password-length"
+                        name="length"
                         min={6}
                         max={20}
-                        name="length"
                         value={values.length}
                         onChange={setValues}
                      />
+                     <select
+                        id="password-length-display"
+                        name="length"
+                        value={values.length}
+                        onChange={setValues}>
+                        {[...Array(15)].map((_, i) => (
+                           <option key={i} value={i + 6}>
+                              {i + 6}
+                           </option>
+                        ))}
+                     </select>
                   </div>
                   <div className="field">
-                     <label htmlFor="capital">ABC</label>
+                     <label htmlFor="capital">Uppercase (ABC)</label>
                      <input
                         type="checkbox"
                         id="capital"
@@ -120,7 +117,7 @@ function App() {
                      />
                   </div>
                   <div className="field">
-                     <label htmlFor="small">abc</label>
+                     <label htmlFor="small">Lowercase (abc)</label>
                      <input
                         type="checkbox"
                         id="small"
@@ -130,7 +127,7 @@ function App() {
                      />
                   </div>
                   <div className="field">
-                     <label htmlFor="number">123</label>
+                     <label htmlFor="number">Numbers (123)</label>
                      <input
                         type="checkbox"
                         id="number"
@@ -140,7 +137,7 @@ function App() {
                      />
                   </div>
                   <div className="field">
-                     <label htmlFor="symbol">#$&</label>
+                     <label htmlFor="symbol">Symbols (#$&)</label>
                      <input
                         type="checkbox"
                         id="symbol"
@@ -150,7 +147,9 @@ function App() {
                      />
                   </div>
                </div>
-               <button className='hvr-shutter-in-vertical' type="submit">Generate Password</button>
+               <button className="hvr-shutter-in-vertical" type="submit">
+                  Generate Password
+               </button>
             </form>
          </div>
       </section>
