@@ -14,7 +14,7 @@ body {
    font-size: 18px;
    font-family: 'Montserrat';
    color: #fff;
-   background-image: url('./img/bg2.jpeg');
+   background-image: url('./img/bg2.webp');
    background-size: cover;
    background-repeat: no-repeat;
    background-position: center;
@@ -39,19 +39,20 @@ section {
    border: 2px solid rgb(0, 187, 255);
    backdrop-filter: blur(15px);
    box-shadow: 0px 0px 25px rgb(0, 179, 255), 0px 0px 10px rgb(0, 179, 255);
-   /* animation: animateBg 2s linear;
-   animation-delay: 2s; */
+   animation: animateBg 2s linear;
 }
 
-/* @keyframes animateBg {
+@keyframes animateBg {
    0% {
+      opacity: 0;
       transform: translateY(-100%);
    }
 
    100% {
+      opacity: 1;
       transform: translateY(0);
    }
-} */
+}
 
 form {
    width: 100%;
